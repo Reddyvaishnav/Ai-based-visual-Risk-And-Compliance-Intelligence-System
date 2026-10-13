@@ -1,9 +1,8 @@
-Milestone1/
- app.py
-  Templetes/
-  about.html
-  base.html
-  contact.html
-  index.html
-  login.html
-  register.html
+ Milestone1/
+├── app.py
+└── Templates/
+    ├── base.html
+    ├── contact.html
+    ├── index.html
+    ├── login.html
+    └── register.html
