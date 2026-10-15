@@ -1,0 +1,932 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Risk and AI Intelligence</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6875df;
+      --purple: #7354b3;
+      --dark: #2e384b;
+      --muted: #70809b;
+      --background: #f6f7fa;
+      --white: #ffffff;
+      --shadow: 0 8px 28px rgba(35, 43, 65, 0.07);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--dark);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVIGATION BAR */
+
+    .navbar {
+      min-height: 62px;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 1px solid #e9eaf1;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 19px;
+      font-weight: 750;
+    }
+
+    .logo-icon {
+      color: var(--primary);
+      font-size: 25px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 25px;
+      cursor: pointer;
+      color: var(--dark);
+    }
+
+    /* HERO SECTION */
+
+    .hero {
+      background: linear-gradient(
+        112deg,
+        #6875df 0%,
+        #6b63c5 52%,
+        #7652ae 100%
+      );
+      color: white;
+      min-height: 490px;
+      display: flex;
+      align-items: center;
+      padding: 65px 30px;
+    }
+
+    .hero-content {
+      max-width: 1400px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .hero-label {
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      max-width: 950px;
+      font-size: clamp(40px, 5.2vw, 68px);
+      line-height: 1.22;
+      letter-spacing: -1.5px;
+      margin-bottom: 17px;
+    }
+
+    .hero p {
+      max-width: 850px;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    /* COMMON SECTIONS */
+
+    .container {
+      max-width: 1440px;
+      padding: 0 30px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: #6077ff;
+      font-weight: bold;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    h2 {
+      font-size: clamp(29px, 3.2vw, 39px);
+      line-height: 1.25;
+      letter-spacing: -0.7px;
+    }
+
+    /* PROJECT SUMMARY */
+
+    .summary {
+      padding-top: 62px;
+      padding-bottom: 48px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.85fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .summary h2 {
+      margin-bottom: 17px;
+    }
+
+    .summary-description {
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.55;
+      margin-bottom: 17px;
+    }
+
+    .summary-note {
+      color: #687b99;
+      font-size: 15.5px;
+      line-height: 1.6;
+    }
+
+    .info-card {
+      padding: 25px;
+      border-radius: 17px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .icon-box {
+      width: 55px;
+      height: 55px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background: linear-gradient(140deg, #6879ef, #774bb0);
+      font-size: 26px;
+      margin-bottom: 17px;
+    }
+
+    .info-card h3 {
+      font-size: 23px;
+      margin-bottom: 9px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* FEATURES */
+
+    .features {
+      padding-top: 22px;
+      padding-bottom: 75px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 27px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 17px;
+      padding: 24px;
+      min-height: 225px;
+      box-shadow: var(--shadow);
+      border: 1px solid #f0f1f6;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(35, 43, 65, 0.12);
+    }
+
+    .feature-card h3 {
+      font-size: 19px;
+      margin-bottom: 11px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    /* PREDICTIVE ANALYTICS */
+
+    .predictions {
+      background: white;
+      border-top: 1px solid #eceef5;
+      border-bottom: 1px solid #eceef5;
+      padding: 65px 30px;
+    }
+
+    .prediction-content {
+      max-width: 1380px;
+      margin: auto;
+    }
+
+    .prediction-heading {
+      max-width: 760px;
+      margin: 0 auto 32px;
+      text-align: center;
+    }
+
+    .prediction-heading p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 13px;
+    }
+
+    .prediction-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .prediction-card {
+      background: #f8f9fd;
+      border: 1px solid #eceef7;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .prediction-card h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .prediction-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* CALL TO ACTION */
+
+    .cta {
+      padding: 65px 25px;
+      text-align: center;
+      background: linear-gradient(110deg, #f3f5ff, #fbf8ff);
+    }
+
+    .cta p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 650px;
+      margin: 14px auto 24px;
+    }
+
+    .primary-btn {
+      display: inline-block;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 22px;
+      background: linear-gradient(120deg, #6477f2, #7551b4);
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: white;
+      border-top: 1px solid #eceef5;
+      padding: 25px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: var(--dark);
+    }
+
+    /* LOGIN AND REGISTER MODAL */
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      padding: 20px;
+      background: rgba(30, 38, 60, 0.55);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      padding: 30px;
+      border-radius: 17px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .modal-description {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      border: none;
+      background: #f0f1f7;
+      border-radius: 50%;
+      height: 33px;
+      width: 33px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dce1ec;
+      border-radius: 9px;
+      font-size: 15px;
+    }
+
+    .form-group input:focus {
+      outline: 2px solid #b9bfff;
+      border-color: #6875df;
+    }
+
+    .modal .primary-btn {
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    .demo-note {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+
+    /* RESPONSIVE DESIGN */
+
+    @media (max-width: 1050px) {
+      .feature-grid,
+      .prediction-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .summary-grid {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 15px 18px;
+      }
+
+      .logo {
+        font-size: 16px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 15px 20px;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 65px 20px;
+      }
+
+      .hero h1 {
+        font-size: clamp(38px, 10vw, 53px);
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .summary {
+        padding-top: 45px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 27px;
+      }
+
+      .summary-description {
+        font-size: 17px;
+      }
+
+      .feature-grid,
+      .prediction-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        padding-bottom: 50px;
+      }
+
+      .predictions {
+        padding: 48px 20px;
+      }
+
+      .prediction-heading {
+        text-align: left;
+      }
+
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar" id="home">
+    <a href="#home" class="logo">
+      <span class="logo-icon">◈</span>
+      <span>Visual Risk and AI Intelligence</span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#" data-modal="login">⇥ Login</a>
+      <a href="#" data-modal="register">♟ Register</a>
+      <a href="#home">⌂ Home</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-label">Project overview</div>
+
+        <h1>
+          AI-Based Visual Risk and Compliance Intelligence System
+        </h1>
+
+        <p>
+          An intelligent personal decision-support system that creates a
+          digital representation of a user's habits, behaviors, financial
+          activities, study patterns, and lifestyle choices.
+        </p>
+      </div>
+    </section>
+
+    <!-- Project Summary -->
+    <section class="summary container">
+      <div class="summary-grid">
+
+        <div>
+          <div class="section-label">Project summary</div>
+
+          <h2>Understand your present. Plan your next move.</h2>
+
+          <p class="summary-description">
+            The platform leverages AI, Machine Learning, and Predictive
+            Analytics to forecast future outcomes and provide personalized
+            recommendations before users make decisions.
+          </p>
+
+          <p class="summary-note">
+            Digital Twin AI combines financial tracking, academic monitoring,
+            fitness logging, goal management, AI-powered predictions, and
+            future simulation in one responsive workspace for individuals
+            and administrators.
+          </p>
+        </div>
+
+        <article class="info-card">
+          <div class="icon-box">🧠</div>
+          <h3>From data to decisions</h3>
+          <p>
+            See your current state, review historical patterns, explore
+            possible outcomes, and receive personalized guidance in a
+            single view.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="features container" id="features">
+      <div class="section-heading">
+        <div class="section-label">Key features</div>
+        <h2>One platform for everyday intelligence</h2>
+      </div>
+
+      <div class="feature-grid">
+
+        <article class="feature-card">
+          <div class="icon-box">◔</div>
+          <h3>Personal Dashboard</h3>
+          <p>
+            See savings, GPA, fitness activity, goals, and recent progress
+            in one clear overview.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-box">▣</div>
+          <h3>Financial Management</h3>
+          <p>
+            Record income and expenses, explore spending patterns, and
+            review savings forecasts.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-box">▤</div>
+          <h3>Study Intelligence</h3>
+          <p>
+            Log study sessions, monitor productivity, and estimate academic
+            performance trends.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-box">♥</div>
+          <h3>Fitness Monitoring</h3>
+          <p>
+            Track workouts, activity duration, calories, weekly targets,
+            and consistency streaks.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-box">↗</div>
+          <h3>Future Simulation</h3>
+          <p>
+            Compare what-if scenarios for saving, spending, studying more,
+            or exercising.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-box">✧</div>
+          <h3>AI Assistant</h3>
+          <p>
+            Explore personalized advice informed by your tracked habits
+            and the information you provide.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-box">◎</div>
+          <h3>Goal Tracking</h3>
+          <p>
+            Set meaningful goals, monitor completion, and keep your next
+            milestones in view.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-box">♧</div>
+          <h3>Admin Panel</h3>
+          <p>
+            Review platform activity, user growth, and high-level usage
+            analytics.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Predictive Analytics -->
+    <section class="predictions" id="predictions">
+      <div class="prediction-content">
+
+        <div class="prediction-heading">
+          <div class="section-label">Predictive analytics</div>
+
+          <h2>Turn today's patterns into tomorrow's insights</h2>
+
+          <p>
+            Use historical logs and trend analysis to explore likely
+            outcomes. Forecasts are estimates, not guarantees, and become
+            more useful when the input data is consistent.
+          </p>
+        </div>
+
+        <div class="prediction-grid">
+
+          <article class="prediction-card">
+            <h3>💰 Savings Forecast</h3>
+            <p>
+              View a projected six-month savings trend based on income
+              and spending patterns.
+            </p>
+          </article>
+
+          <article class="prediction-card">
+            <h3>📚 GPA Prediction</h3>
+            <p>
+              Explore academic estimates based on logged study sessions
+              and productivity.
+            </p>
+          </article>
+
+          <article class="prediction-card">
+            <h3>💪 Fitness Projection</h3>
+            <p>
+              Estimate activity trends over the coming 30 days using
+              recent records.
+            </p>
+          </article>
+
+          <article class="prediction-card">
+            <h3>📊 Life Score</h3>
+            <p>
+              Review a combined 0–100 index across finance, academics,
+              fitness, and goals.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+      <h2>Make your next decision with more clarity</h2>
+
+      <p>
+        Bring your everyday metrics together, understand your habits,
+        and use data-backed insights to plan your next step.
+      </p>
+
+      <button class="primary-btn" data-modal="register">
+        Explore the platform →
+      </button>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <strong>◈ Visual Risk and AI Intelligence</strong>
+    <span>AI-Based Visual Risk and Compliance Intelligence System</span>
+    <span>Project prototype</span>
+  </footer>
+
+  <!-- Login / Register Dialog -->
+  <div class="modal-overlay" id="modalOverlay">
+    <section class="modal" role="dialog" aria-modal="true"
+             aria-labelledby="modalTitle">
+
+      <button class="close-btn" id="closeModal"
+              aria-label="Close">×</button>
+
+      <div class="icon-box">🧠</div>
+      <h2 id="modalTitle">Welcome back</h2>
+
+      <p class="modal-description" id="modalDescription">
+        Sign in to continue to your personal intelligence workspace.
+      </p>
+
+      <form id="accountForm">
+
+        <div class="form-group" id="nameGroup" hidden>
+          <label for="fullName">Full name</label>
+          <input id="fullName" type="text"
+                 placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input id="email" type="email"
+                 placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password"
+                 placeholder="Enter your password"
+                 minlength="4" required>
+        </div>
+
+        <button class="primary-btn" id="submitBtn" type="submit">
+          Login →
+        </button>
+
+      </form>
+
+      <p class="demo-note">
+        Demonstration only. Connect the Flask backend and database
+        to enable real accounts.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const closeModalBtn = document.getElementById("closeModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const nameGroup = document.getElementById("nameGroup");
+    const fullName = document.getElementById("fullName");
+    const submitBtn = document.getElementById("submitBtn");
+    const accountForm = document.getElementById("accountForm");
+
+    let currentMode = "login";
+
+    // Mobile navigation
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Show login or registration dialog
+    function openModal(mode) {
+      currentMode = mode;
+
+      const registering = mode === "register";
+
+      modalTitle.textContent = registering
+        ? "Create your account"
+        : "Welcome back";
+
+      modalDescription.textContent = registering
+        ? "Start building a clearer picture of your daily habits and goals."
+        : "Sign in to continue to your personal intelligence workspace.";
+
+      nameGroup.hidden = !registering;
+      fullName.required = registering;
+
+      submitBtn.textContent = registering
+        ? "Register →"
+        : "Login →";
+
+      modalOverlay.classList.add("active");
+      navLinks.classList.remove("open");
+    }
+
+    // Connect Login and Register buttons
+    document.querySelectorAll("[data-modal]").forEach(button => {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        openModal(button.dataset.modal);
+      });
+    });
+
+    // Close dialog
+    function closeModal() {
+      modalOverlay.classList.remove("active");
+    }
+
+    closeModalBtn.addEventListener("click", closeModal);
+
+    modalOverlay.addEventListener("click", event => {
+      if (event.target === modalOverlay) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    // Demonstration form only
+    accountForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (currentMode === "register") {
+        alert(
+          "Registration form validated. Connect your Flask backend " +
+          "to create a real account."
+        );
+      } else {
+        alert(
+          "Login form validated. Connect Flask authentication " +
+          "to sign in with a real account."
+        );
+      }
+
+      closeModal();
+      accountForm.reset();
+    });
+  </script>
+
+</body>
+</html>
